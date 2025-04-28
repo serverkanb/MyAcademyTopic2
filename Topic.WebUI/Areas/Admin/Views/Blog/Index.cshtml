@@ -1,0 +1,39 @@
+﻿﻿
+@model List<ResultBlogDto>
+@{
+    ViewData["Title"] = "Bloglar";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+@{
+    int count = 0;
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Kapak Resmi</th>
+        <th>Blog Adı</th>
+        <th>Kategori</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td><img src="@item.CoverImageUrl" />  </td>
+            <td>@item.Title </td>
+            <td>@item.Category.CategoryName</td>
+            <td>@item.ShortDescription</td>
+            <td>
+                <a asp-action="DeleteBlog" asp-route-id="@item.BlogId" class="btn btn-outline-danger">Sil</a>
+                <a asp-action="UpdateBlog" asp-route-id="@item.BlogId" class="btn btn-outline-info">Güncelle</a>
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+<a asp-action="CreateBlog" class="btn btn-outline-primary">Yeni Blog Oluştur</a>

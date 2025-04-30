@@ -29,7 +29,7 @@ namespace Topic.WebUI.Controllers
 
         public async Task<IActionResult> GetBlogDetails(int id)
         {
-            var value = await _client.GetFromJsonAsync<ResultBlogDto>("blogs" + id);
+            var value = await _client.GetFromJsonAsync<ResultBlogDto>("blogs/" + id);
             return View(value);
         }
     }

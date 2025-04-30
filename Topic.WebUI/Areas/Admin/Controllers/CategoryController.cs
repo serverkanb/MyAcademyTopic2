@@ -18,7 +18,9 @@ namespace Topic.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var responseMessage = await _client.GetAsync("https://localhost:7165/api/categories");
+
+            var responseMessage = await _client.GetAsync("https://localhost:7211/api/categories");
+
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -38,11 +40,13 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
+            //nesneyi Json stringe çevirir
             var category = JsonConvert.SerializeObject(createCategoryDto);
-
+            //Json Stringi httpcontent formatına çevirir,utf8 karakter seri belirlenir
             var stringContent = new StringContent(category, Encoding.UTF8, "application/json");
-
-            var responseMessage = await _client.PostAsync("https://localhost:7165/api/categories", stringContent);
+            //oluşturulan string contenti gönderir
+            var responseMessage = await _client.PostAsync("https://localhost:7211/api/categories", stringContent);
+            //apiden dönen yanıt kontrolü
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,7 +57,7 @@ namespace Topic.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var responseMessage = await _client.DeleteAsync("https://localhost:7165/api/categories/" + id);
+            var responseMessage = await _client.DeleteAsync("https://localhost:7211/api/categories/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,10 +69,12 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
-            var responseMessage = await _client.GetAsync("https://localhost:7165/api/categories/" + id);
+            var responseMessage = await _client.GetAsync("https://localhost:7211/api/categories/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
+                //Json cevabını string olrak al
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                //JSON → UpdateCategoryDto nesnesine dönüştür
                 var values = JsonConvert.DeserializeObject<UpdateCategoryDto>(jsonData);
                 return View(values);
             }
@@ -78,11 +84,12 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
+            
             var category = JsonConvert.SerializeObject(updateCategoryDto);
 
             var stringContent = new StringContent(category, Encoding.UTF8, "application/json");
-
-            var responseMessage = await _client.PutAsync("https://localhost:7165/api/categories", stringContent);
+           // API’ya PUT isteği atılır(güncelleme için)
+            var responseMessage = await _client.PutAsync("https://localhost:7211/api/categories", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

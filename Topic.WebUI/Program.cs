@@ -1,11 +1,20 @@
+using Microsoft.Extensions.Options;
+using NuGet.Configuration;
+using Topic.WebUI.Service;
+using Topic.WebUI.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection(nameof(ApiSettings)));
+builder.Services.AddHttpClient<IBlogService, BlogService>((sp, client) =>
+{
+    var settings = sp.GetRequiredService<IOptions<ApiSettings>>().Value;
 
-
+    client.BaseAddress = new Uri(settings.BaseUrl);
+});
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,5 +35,14 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+
 
 app.Run();

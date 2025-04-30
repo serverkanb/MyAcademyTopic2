@@ -14,7 +14,7 @@ namespace Topic.WebUI.ViewComponents.Default
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultCategoryDto>>("https://localhost:7165/api/categories/GetActiveCategories");
+            var values = await _client.GetFromJsonAsync<List<ResultCategoryDto>>("https://localhost:7211/api/categories/GetActiveCategories");
             return View(values);
         }
     }

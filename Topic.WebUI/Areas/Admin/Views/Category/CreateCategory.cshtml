@@ -1,0 +1,15 @@
+﻿@using Topic.WebUI.Dtos.CategoryDtos
+
+@model CreateCategoryDto
+@{
+    ViewData["Title"] = "Kategoriler";
+    ViewData["SubTitle"] = "Yeni Kategori Oluştur";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<form method="post">
+    <label>Kategori Adı</label>
+    <input type="text" class="form-control" asp-for="CategoryName" />
+    <br />
+<button class="btn btn-outline-primary">Kaydet</button>
+</form>

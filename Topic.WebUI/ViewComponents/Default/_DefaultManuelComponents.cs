@@ -11,7 +11,7 @@ namespace Topic.WebUI.ViewComponents.Default
 
             public _DefaultManuelComponent(HttpClient client)
             {
-                client.BaseAddress = new Uri("https://localhost:7165/api/");
+                client.BaseAddress = new Uri("https://localhost:7211/api/");
                 _client = client;
             }
 

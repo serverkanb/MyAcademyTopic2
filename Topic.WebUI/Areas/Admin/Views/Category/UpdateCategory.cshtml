@@ -1,0 +1,17 @@
+﻿@using Topic.WebUI.Dtos.CategoryDtos
+@model UpdateCategoryDto
+@{
+    ViewData["Title"] = "Kategoriler";
+    ViewData["SubTitle"] = "Kategori Güncelleme";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+<form method="post">
+    <input type="hidden" asp-for="CategoryId" />
+    <label>Kategori Adı</label>
+    <input type="text" class="form-control" asp-for="CategoryName" />
+    <br />
+    <button class="btn btn-outline-primary">Güncelle</button>
+
+</form>

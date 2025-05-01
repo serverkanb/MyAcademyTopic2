@@ -17,7 +17,7 @@ namespace Topic.BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
-        public List<Category> TActiveCategories()
+        public List<Category> TGetActiveCategories()
         {
             return _categoryDal.GetActiveCategories();
         }

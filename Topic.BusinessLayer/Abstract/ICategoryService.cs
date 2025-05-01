@@ -10,6 +10,6 @@ namespace Topic.BusinessLayer.Abstract
 {
     public interface ICategoryService : IGenericService<Category>
     {
-        List<Category> TActiveCategories();
+        List<Category> TGetActiveCategories();
     }
 }

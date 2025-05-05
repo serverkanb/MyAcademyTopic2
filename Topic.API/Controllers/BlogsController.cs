@@ -13,7 +13,7 @@ namespace Topic.API.Controllers
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
 
-       
+
 
         public BlogsController(IBlogService blogService, IMapper mapperService)
         {
@@ -68,6 +68,41 @@ namespace Topic.API.Controllers
             return Ok("Blog başarıyla güncellendi");
         }
 
-    }
 
+        [HttpGet("Paged")]
+        public IActionResult GetPagedBlogs([FromQuery] int page = 1, [FromQuery] int pageSize = 5, [FromQuery] string keyword = "")
+        {
+            var allBlogs = _blogService.TGetBlogsWithCategories();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                allBlogs = allBlogs
+                    .Where(b =>
+                        (!string.IsNullOrEmpty(b.Title) && b.Title.ToLower().Contains(keyword)) ||
+                        (!string.IsNullOrEmpty(b.LongDescription) && b.LongDescription.ToLower().Contains(keyword))
+                    )
+                    .ToList();
+            }
+
+            var totalCount = allBlogs.Count;
+            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+            var pagedBlogs = allBlogs
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var blogs = _mapper.Map<List<ResultBlogDto>>(pagedBlogs);
+
+            var result = new PagedResultDto<ResultBlogDto>
+            {
+                Items = blogs,
+                TotalPages = totalPages
+            };
+
+            return Ok(result);
+        }
+
+    }
 }

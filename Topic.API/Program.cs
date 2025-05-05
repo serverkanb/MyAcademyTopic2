@@ -24,6 +24,13 @@ builder.Services.AddScoped<ICategoryService,CategoryManager>();
 builder.Services.AddScoped<IManuelDal,EfManuelDal>();
 builder.Services.AddScoped<IManuelService,ManuelManager>();
 
+builder.Services.AddScoped<IContactDal, EfContactDal>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+
+builder.Services.AddScoped<IFAQDal, EfFAQDal>();
+builder.Services.AddScoped<IFAQService, FAQManager>();
+
+
 builder.Services.AddScoped(typeof(IGenericDal<>),typeof(GenericRepository<>));
 
 builder.Services.AddControllers();

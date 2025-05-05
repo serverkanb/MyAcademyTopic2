@@ -1,0 +1,22 @@
+﻿@using Topic.WebUI.Dtos.FAQ
+@model CreateFAQDto
+@{
+    ViewData["Title"] = "CreateFaq";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+<h3>Yeni Sorulan Soru  Ekleme Sayfası </h3>
+<br />
+<br />
+
+<form method="post">
+    <label> Ofis Adı</label>
+    <input type="text" asp-for="Question" class="form-control" />
+    <br />
+    <label>Adres</label>
+    <input type="text" asp-for="Answer" class="form-control" />
+    <br />
+    
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>

@@ -1,0 +1,46 @@
+﻿@using Topic.WebUI.Dtos.ContactDto
+@model List<ResultContactDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h3>İletişim Bilgileri Sayfası</h3>
+<br />
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Ofis Adı</th>
+        <th>Adres</th>
+        <th>Telefon</th>
+        <th>Email</th>
+        <th>Harita</th>
+        <th>İşlemler</th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td>@item.OfficeName</td>
+            <td>@item.Address </td>
+            <td>@item.Phone</td>
+            <td>@item.Email</td>
+            <td>@item.MapUrl</td>
+            <td>
+                <a asp-action="DeleteContact" asp-route-id="@item.ContactId" class="btn btn-outline-danger">Sil</a>
+                <a asp-action="UpdateContact" asp-route-id="@item.ContactId" class="btn btn-outline-info">Güncelle</a>
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+<a asp-action="CreateContact" class="btn btn-outline-primary">Yeni İletişim Bilgisi Ekle</a>
+
+</table>
+

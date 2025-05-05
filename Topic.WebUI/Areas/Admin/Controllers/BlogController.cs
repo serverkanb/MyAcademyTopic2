@@ -1,28 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Topic.WebUI.Dtos.BlogDtos;
 
 using Topic.WebUI.Dtos.BlogDtos;
 using Topic.WebUI.Dtos.CategoryDtos;
-using Topic.WebUI.Service;
+
 
 namespace Topic.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("[area]/[controller]/[action]/{id?}")]
-    public class BlogController(IBlogService _blogService) : Controller
+    public class BlogController : Controller
     {
+        private readonly HttpClient _client;
 
+        public BlogController(HttpClient client)
+        {
+            client.BaseAddress = new Uri("https://localhost:7211/api/");
+            _client = client;
+        }
 
         public async Task<IActionResult> Index()
         {
-            var values = await _blogService.GetAllAsync();
+            var values = await _client.GetFromJsonAsync<ResultBlogDto>("blogs");
             return View(values);
         }
 
         public async Task<IActionResult> DeleteBlog(int id)
         {
-            await _blogService.DeleteBlogAsync(id);
+            await _client.DeleteAsync("blogs/" +  id);
             return RedirectToAction("Index");
         }
 
@@ -30,14 +36,21 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateBlog()
         {
 
+            var categoryList = await _client.GetFromJsonAsync<List<ResultCategoryDto>>("categories");
 
+            List<SelectListItem> categories = (from x in categoryList select new SelectListItem
+            {
+                Text = x.CategoryName,
+                Value = x.CategoryId.ToString()
+            }).ToList();
+            ViewBag.Categories = categories; 
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateBlog(CreateBlogDto createBlogDto)
         {
-            await _blogService.CreateBlogAsync(createBlogDto);
+            await _client.PostAsJsonAsync("blogs",createBlogDto);
             return RedirectToAction("Index");
         }
 
@@ -45,14 +58,22 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateBlog(int id)
         {
 
-            var values = await _blogService.GetByIdAsync(id);
-            return View(values);
+            var value = await _client.GetFromJsonAsync<UpdateBlogDto>("blogs/" + id);
+            var categoryList = await _client.GetFromJsonAsync<List<ResultCategoryDto>>("categories");
+            List<SelectListItem> categories = (from x in categoryList
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.CategoryName,
+                                                   Value = x.CategoryId.ToString()
+                                               }).ToList();
+            ViewBag.Categories = categories;
+            return View(value);
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateBlog(UpdateBlogDto updateBlogDto)
         {
-            await _blogService.UpdateBlogAsync(updateBlogDto);
+            await _client.PutAsJsonAsync("blogs", updateBlogDto);
             return RedirectToAction("Index");
         }
     }

@@ -1,0 +1,22 @@
+﻿@using Topic.WebUI.Dtos.FAQ
+@model UpdateFAQDto
+@{
+    ViewData["Title"] = "UpdateFaq";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Sorulan Soru Güncelleme Sayfası </h3>
+<br />
+<br />
+
+<form method="post">
+    <input type="hidden" asp-for="FaqId" />
+    <label> Ofis Adı</label>
+    <input type="text" asp-for="Question" class="form-control" />
+    <br />
+    <label>Adres</label>
+    <input type="text" asp-for="Answer" class="form-control" />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+

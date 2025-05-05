@@ -38,7 +38,7 @@
                 {
                     <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
                         <div class="d-flex">
-                            <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
+                            <img src="@item.CoverImageUrl" class="custom-block-image img-fluid" alt="">
 
 
 
@@ -65,36 +65,19 @@
             <div class="col-lg-12 col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">Prev</span>
-                            </a>
+                        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="/Blog/GetAllBlogs?page=@(ViewBag.CurrentPage - 1)">Prev</a>
                         </li>
 
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#">1</a>
-                        </li>
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                                <a class="page-link" href="/Blog/GetAllBlogs?page=@i">@i</a>
+                            </li>
+                        }
 
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">Next</span>
-                            </a>
+                        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                            <a class="page-link" href="/Blog/GetAllBlogs?page=@(ViewBag.CurrentPage + 1)">Next</a>
                         </li>
                     </ul>
                 </nav>

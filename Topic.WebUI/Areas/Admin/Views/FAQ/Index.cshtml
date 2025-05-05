@@ -1,0 +1,48 @@
+﻿@using Topic.WebUI.Dtos.FAQ
+@model List<ResultFAQDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h3>Sıkça Sorulan Sorular Sayfası</h3>
+<br />
+<br>
+<table class="table table-hover">
+
+    <tr>
+        <th>#</th>
+        <th>Soru</th>
+        <th>Cevap</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count ++;
+        <tr>
+            <th>@count</th>
+            <td>@item.Question<td>
+            <td>@item.Answer </td>
+           
+            <td>
+                <a asp-action="DeleteFaq" asp-route-id="@item.FaqId" class="btn btn-outline-danger">Sil</a>
+                <a asp-action="UpdateFaq" asp-route-id="@item.FaqId" class="btn btn-outline-info">Güncelle</a>
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+<a asp-action="CreateFaq" class="btn btn-outline-primary">Yeni Sorulan Soru Ekle</a>
+
+
+    }
+
+
+
+
+</table>
+

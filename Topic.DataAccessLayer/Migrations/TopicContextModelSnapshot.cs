@@ -89,6 +89,53 @@ namespace Topic.DataAccessLayer.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Topic.EntityLayer.Entities.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MapUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OfficeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("Topic.EntityLayer.Entities.FAQ", b =>
+                {
+                    b.Property<int>("FaqId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaqId"));
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FaqId");
+
+                    b.ToTable("FAQs");
+                });
+
             modelBuilder.Entity("Topic.EntityLayer.Entities.Manuel", b =>
                 {
                     b.Property<int>("ManuelId")

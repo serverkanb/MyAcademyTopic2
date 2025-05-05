@@ -1,0 +1,31 @@
+﻿@using Topic.WebUI.Dtos.ContactDto
+@model UpdateContactDto
+@{
+    ViewData["Title"] = "UpdateContact";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>İtetişim Güncelleme Sayfası</h3>
+<br />
+<br />
+<br />
+
+<form method="post">
+    <input type="hidden" asp-for="ContactId" />
+    <label> Ofis Adı</label>
+    <input type="text" asp-for="OfficeName" class="form-control" />
+    <br />
+    <label>Adres</label>
+    <input type="text" asp-for="OfficeName" class="form-control" />
+    <br />
+    <label>Telefon</label>
+    <input type="text" asp-for="OfficeName" class="form-control" />
+    <br />
+    <label>Email</label>
+    <input type="text" asp-for="OfficeName" class="form-control" />
+    <br />
+    <label>Harita</label>
+    <input type="text" asp-for="OfficeName" class="form-control" />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>

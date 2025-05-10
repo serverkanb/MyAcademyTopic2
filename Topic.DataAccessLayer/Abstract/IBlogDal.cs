@@ -15,5 +15,7 @@ namespace Topic.DataAccessLayer.Abstract
 
         List<Blog> GetBlogsByCategoryId(int id);
 
+        int GetBlogCountByCategoryId(int categoryId);
+
     }
 }

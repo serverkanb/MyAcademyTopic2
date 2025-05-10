@@ -13,12 +13,14 @@ namespace Topic.API.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
+        private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ICategoryService categoryService, IMapper mapper)
+        public CategoriesController(ICategoryService categoryService, IMapper mapper, IBlogService blogService = null)
         {
             _categoryService = categoryService;
             _mapper = mapper;
+            _blogService = blogService;
         }
 
         [HttpGet]
@@ -68,6 +70,13 @@ namespace Topic.API.Controllers
             var values = _categoryService.TGetActiveCategories();
             var mappedResult = _mapper.Map<List<ResultCategoryDto>>(values);
             return Ok(mappedResult);
+        }
+
+        [HttpGet("GetBlogCountByCategoryId/{id}")]
+        public IActionResult GetBlogCountByCategoryId(int id)
+        {
+            var blogCount = _blogService.TGetBlogCountByCategoryId(id);
+            return Ok(blogCount);
         }
 
 

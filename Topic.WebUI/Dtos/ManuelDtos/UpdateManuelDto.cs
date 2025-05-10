@@ -1,6 +1,6 @@
 ﻿namespace Topic.WebUI.Dtos.ManuelDtos
 {
-    public class UpdateDto
+    public class UpdateManuelDto
     {
         public int ManuelId { get; set; }
         public string Title { get; set; }

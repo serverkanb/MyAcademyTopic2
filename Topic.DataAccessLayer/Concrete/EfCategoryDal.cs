@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +21,7 @@ namespace Topic.DataAccessLayer.Concrete
         {
            return _context.Categories.Where(x=> x.Status == true).ToList();
         }
+
+     
     }
 }

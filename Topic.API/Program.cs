@@ -30,6 +30,9 @@ builder.Services.AddScoped<IContactService, ContactManager>();
 builder.Services.AddScoped<IFAQDal, EfFAQDal>();
 builder.Services.AddScoped<IFAQService, FAQManager>();
 
+builder.Services.AddScoped<ISubscriberDal, EfSubscriberDal>();
+builder.Services.AddScoped<ISubscriberService, SubscriberManager>();
+
 
 builder.Services.AddScoped(typeof(IGenericDal<>),typeof(GenericRepository<>));
 

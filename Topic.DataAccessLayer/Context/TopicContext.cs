@@ -22,6 +22,7 @@ namespace Topic.DataAccessLayer.Context
         public DbSet<Manuel> Manuels { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 
 

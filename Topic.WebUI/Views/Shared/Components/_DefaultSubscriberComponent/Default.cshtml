@@ -1,0 +1,26 @@
+﻿@model Topic.WebUI.Dtos.SubscriberDtos.CreateSubscriberDto
+
+<section class="section-padding section-bg" id="section_5">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5 col-12">
+                <img src="~/TopicListing-1.0.0/images/rear-view-young-college-student.jpg" class="newsletter-image img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
+                <form asp-controller="Subscriber" asp-action="CreateSubscriber" method="post" class="custom-form subscribe-form">
+                    <h4 class="mb-4 pb-2">Abone Olun</h4>
+
+                    <input asp-for="Email" class="form-control" placeholder="Email Adresiniz" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                    <div class="col-lg-12 col-12">
+                        <button type="submit" class="form-control">Abone Ol</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>

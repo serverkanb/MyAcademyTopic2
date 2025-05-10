@@ -1,6 +1,6 @@
 ﻿namespace Topic.WebUI.Dtos.ManuelDtos
 {
-    public class CreateDto
+    public class CreateManuelDto
     {
     
         public string Title { get; set; }

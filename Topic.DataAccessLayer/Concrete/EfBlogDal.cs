@@ -16,6 +16,13 @@ namespace Topic.DataAccessLayer.Concrete
         public EfBlogDal(TopicContext context) : base(context)
         {
         }
+
+        public int GetBlogCountByCategoryId(int categoryId)
+        {
+            return _context.Blogs.Where(x=>x.CategoryId == categoryId).Count();
+
+        }
+
         public List<Blog> GetBlogsByCategoryId(int id)
         {
             return _context.Blogs.Where(x => x.CategoryId == id).ToList();

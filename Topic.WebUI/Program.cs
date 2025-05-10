@@ -21,6 +21,16 @@ var builder = WebApplication.CreateBuilder(args);
 //});
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +46,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllerRoute(

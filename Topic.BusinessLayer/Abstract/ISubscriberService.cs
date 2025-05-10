@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Topic.EntityLayer.Entities;
 
-namespace Topic.DataAccessLayer.Abstract
+namespace Topic.BusinessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface ISubscriberService : IGenericService<Subscriber>
     {
-        List<Category> GetActiveCategories();
 
-        
     }
 }

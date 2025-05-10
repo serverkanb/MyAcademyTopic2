@@ -17,6 +17,11 @@ namespace Topic.BusinessLayer.Concrete
             _blogDal = blogDal;
         }
 
+        public int TGetBlogCountByCategoryId(int categoryId)
+        {
+            return _blogDal.GetBlogCountByCategoryId(categoryId);
+        }
+
         public List<Blog> TGetBlogsByCategoryId(int id)
         {
             return _blogDal.GetBlogsByCategoryId(id);

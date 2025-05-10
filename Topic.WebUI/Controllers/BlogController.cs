@@ -36,6 +36,7 @@ namespace Topic.WebUI.Controllers
             var value = await _client.GetFromJsonAsync<ResultBlogDto>("https://localhost:7211/api/blogs/" + id);
             return View(value);
         }
+
         public async Task<IActionResult> GetAllBlogs(string keyword = "", int page = 1)
         {
             var url = $"https://localhost:7211/api/blogs/paged?page={page}&pageSize=5";
@@ -60,6 +61,7 @@ namespace Topic.WebUI.Controllers
             return View(pagedResult.Items);
         }
 
+        
 
     }
 }

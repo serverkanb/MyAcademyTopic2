@@ -7,10 +7,8 @@ using Topic.EntityLayer.Entities;
 
 namespace Topic.DataAccessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface ISubscriberDal : IGenericDal<Subscriber>
     {
-        List<Category> GetActiveCategories();
 
-        
     }
 }

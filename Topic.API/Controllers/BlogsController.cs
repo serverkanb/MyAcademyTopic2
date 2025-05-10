@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Topic.BusinessLayer.Abstract;
 using Topic.DTOLayer.Dtos.BlogDtos;
 using Topic.EntityLayer.Entities;
+using System.Linq;
 
 namespace Topic.API.Controllers
 {
@@ -103,6 +104,18 @@ namespace Topic.API.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpGet("GetBlogCountByCategoryId/{id}")]
+        public IActionResult GetBlogCountByCategoryId(int id)
+        {
+            var count = _blogService.TGetBlogCountByCategoryId(id);
+            return Ok(count);
+        }
+
+
+
+
 
     }
 }

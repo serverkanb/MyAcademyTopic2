@@ -1,8 +1,6 @@
 ﻿@using Topic.WebUI.Dtos.FAQ
 @model List<ResultFAQDto>
 
-
-
 <section class="faq-section section-padding" id="section_4">
     <div class="container">
         <div class="row">
@@ -14,30 +12,29 @@
             <div class="clearfix"></div>
 
             <div class="col-lg-5 col-12">
-                <img src="images/faq_graphic.jpg" class="img-fluid" alt="FAQs">
+                <img src="~/TopicListing-1.0.0/images/faq_graphic.jpg" class="img-fluid" alt="FAQs">
             </div>
 
             <div class="col-lg-6 col-12 m-auto">
                 <div class="accordion" id="accordionExample">
                     @foreach (var item in Model)
                     {
-                        
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-@item.FaqId">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                @item.Question 
-                            </button>
-                        </h2>
+                        var headingId = $"heading-{item.FaqId}";
+                        var collapseId = $"collapse-{item.FaqId}";
 
-                        <div id="collapse-@item.FaqId" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                @item.Answer
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="@headingId">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                    @item.Question
+                                </button>
+                            </h2>
+
+                            <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">@item.Answer
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
-
-                  
                 </div>
             </div>
 

@@ -73,20 +73,14 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_4">Sıkça Sorulan Sorular</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">İletişim</a>
+                            <a class="nav-link click-scroll" href="#section_5">Abone Ol</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_6">İletişim</a>
                         </li>
 
-                        @* <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
-
-                                <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
-                            </ul>
-                        </li> *@
+                       
                     </ul>
 
                     <div class="d-none d-lg-block">
@@ -126,7 +120,9 @@
                         <li class="site-footer-link-item">
                             <a href="#" class="site-footer-link">Sıkça Sorulan Sorular</a>
                         </li>
-
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Abone Ol</a>
+                        </li>
                         <li class="site-footer-link-item">
                             <a href="#" class="site-footer-link">İletişim</a>
                         </li>
@@ -182,6 +178,7 @@
     <script src="~/TopicListing-1.0.0/js/jquery.sticky.js"></script>
     <script src="~/TopicListing-1.0.0/js/click-scroll.js"></script>
     <script src="~/TopicListing-1.0.0/js/custom.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

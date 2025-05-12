@@ -22,26 +22,28 @@ namespace Topic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubscriber(CreateSubscriberDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["SubscribeMessage"] = "Lütfen geçerli bilgiler girin.";
+                return RedirectToAction("Index", "Default");
+            }
+
             try
             {
-                var jsonData = JsonConvert.SerializeObject(dto);
+                var jsonData = JsonConvert.SerializeObject(dto); // artık sade model
                 var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                var response = await _client.PostAsync("subscriber", content); // "subscribers" değil "subscriber" çünkü API öyle
+                var response = await _client.PostAsync("subscriber", content);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    TempData["SubscribeMessage"] = "Teşekkürler, abone oldunuz!";
-                    return RedirectToAction("Index", "Default");
-                }
-
-                TempData["SubscribeMessage"] = "Abonelik işlemi sırasında bir hata oluştu.";
-                return RedirectToAction("Index", "Default");
+                TempData["SubscribeMessage"] = response.IsSuccessStatusCode
+                    ? "Teşekkürler, başarıyla abone oldunuz!"
+                    : "Abonelik sırasında bir sorun oluştu.";
             }
             catch (Exception ex)
             {
-                TempData["SubscribeMessage"] = "Sistemsel bir hata oluştu: " + ex.Message;
-                return RedirectToAction("Index", "Default");
+                TempData["SubscribeMessage"] = "Sistem hatası: " + ex.Message;
             }
+
+            return RedirectToAction("Index", "Default");
         }
 
     }

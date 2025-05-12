@@ -10,6 +10,8 @@ namespace Topic.EntityLayer.Entities
     {
         public int SubscriberId { get; set; }
         public string Email { get; set; }
+        public string? Password { get; set; }
+        public string? Role { get; set; } = "USER";
         public DateTime? SubscribedDate { get; set; } = DateTime.Now;
     }
 }

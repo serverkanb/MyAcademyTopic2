@@ -19,6 +19,14 @@ var builder = WebApplication.CreateBuilder(args);
 //{
 //    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
 //});
+builder.Services.AddAuthentication("UserScheme")
+    .AddCookie("UserScheme", options =>
+    {
+        options.LoginPath = "/Login/Index";
+    });
+
+builder.Services.AddAuthorization();
+
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors(options =>

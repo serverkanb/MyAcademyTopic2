@@ -1,0 +1,41 @@
+﻿@using Topic.WebUI.Dtos.ManuelDtos
+@model List<ResultManuelDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h3>Nasıl Çalışır</h3>
+<br /><br />
+
+<div class="table-responsive">
+
+
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>İkon</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td><i class="@item.Icon"></i> (@item.Icon)</td>
+            <td>
+                <a asp-action="DeleteManuel" asp-route-id="@item.ManuelId" class="btn btn-outline-danger">Sil</a>
+                <a asp-action="UpdateManuel" asp-route-id="@item.ManuelId" class="btn btn-outline-info">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-action="CreateManuel" class="btn btn-outline-primary">Yeni Manuel Bilgi Ekle</a>
+</div>

@@ -1,0 +1,26 @@
+﻿@using Topic.WebUI.Dtos.ManuelDtos
+@model CreateManuelDto
+@{
+    ViewData["Title"] = "CreateManuel";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Manuel Bilgi Ekleme Sayfası</h3>
+<br />
+<br />
+
+<form method="post">
+    <label>Başlık</label>
+    <input type="text" asp-for="Title" class="form-control" />
+    <br />
+
+    <label>Açıklama</label>
+    <input type="text" asp-for="Description" class="form-control" />
+    <br />
+
+    <label>İkon</label>
+    <input type="text" asp-for="Icon" class="form-control" />
+    <br />
+
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>

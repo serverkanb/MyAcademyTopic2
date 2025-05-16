@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Topic.DTOLayer.Dtos.SubscriberDtos
 {
-    public class CreateSubscriberDto
+    public class ResultSubscriberDto
     {
-        [Required]
-        [EmailAddress]
+        public int SubscriberId { get; set; }
         public string Email { get; set; }
-
-        [Required]
-        [MinLength(6)]
-        public string Password { get; set; }
-
+        public string? Password { get; set; }
         public string? Role { get; set; }
+        public DateTime? SubscribedDate { get; set; } = DateTime.Now;
     }
 }

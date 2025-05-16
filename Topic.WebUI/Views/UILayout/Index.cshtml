@@ -41,7 +41,7 @@
 
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/Default/Index">
                     <i class="bi-back"></i>
                     <span>Topic</span>
                 </a>
@@ -50,7 +50,7 @@
                     <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -59,19 +59,17 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/Default/Index">Anasayfa</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_2">Keşfet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog/GetAllBlogs">Tüm Bloglar</a>
+                            <a class="nav-link" href="/Blog/GetAllBlogs">Bloglar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_3">Nasıl Çalışıyor</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Sıkça Sorulan Sorular</a>
+                            <a class="nav-link click-scroll" href="#section_4">S.S.S</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Abone Ol</a>
@@ -80,12 +78,29 @@
                             <a class="nav-link click-scroll" href="#section_6">İletişim</a>
                         </li>
 
-                       
-                    </ul>
+                        @* Giriş yapmışsa göstereceğimiz alanlar *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @* ADMIN rolü için panel linki *@
+                            if (User.IsInRole("ADMIN"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Admin/Category/Index">Panel</a>
+                                </li>
+                            }
 
-                    <div class="d-none d-lg-block">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
+                          
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Login/Logout">Çıkış Yap</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Login/Index">Giriş Yap</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

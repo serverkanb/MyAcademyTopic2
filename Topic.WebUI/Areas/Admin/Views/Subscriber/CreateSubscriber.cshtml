@@ -1,0 +1,21 @@
+﻿@using Topic.WebUI.Dtos.SubscriberDtos
+@model CreateSubscriberDto
+@{
+    ViewData["Title"] = "UpdateSubscriber";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Abone Ekle</h3>
+<br />
+<form method="post">
+    <label>Email</label>
+    <input type="email" asp-for="Email" class="form-control" />
+    <br />
+    <label>Şifre</label>
+    <input type="text" asp-for="Password" class="form-control" />
+    <br />
+    <label>Rol</label>
+    <input type="text" asp-for="Role" class="form-control" />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>

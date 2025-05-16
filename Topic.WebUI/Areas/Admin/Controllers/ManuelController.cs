@@ -2,30 +2,29 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
-using Topic.WebUI.Dtos.FAQ;
+using Topic.WebUI.Dtos.ManuelDtos;
 
 namespace Topic.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("[area]/[controller]/[action]/{id?}")]
     [Authorize(Roles = "ADMIN")]
-    public class FAQController : Controller
+    public class ManuelController : Controller
     {
         private readonly HttpClient _client;
 
-        public FAQController(HttpClient client)
+        public ManuelController(HttpClient client)
         {
             _client = client;
         }
 
         public async Task<IActionResult> Index()
         {
-            var responseMessage = await _client.GetAsync("https://localhost:7211/api/FAQ");
-
+            var responseMessage = await _client.GetAsync("https://localhost:7211/api/manuels");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFAQDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultManuelDto>>(jsonData);
                 return View(values);
             }
 
@@ -33,18 +32,18 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateFaq()
+        public IActionResult CreateManuel()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFaq(CreateFAQDto createFaqDto)
+        public async Task<IActionResult> CreateManuel(CreateManuelDto createManuelDto)
         {
-            var faq = JsonConvert.SerializeObject(createFaqDto);
-            var stringContent = new StringContent(faq, Encoding.UTF8, "application/json");
+            var content = JsonConvert.SerializeObject(createManuelDto);
+            var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
+            var responseMessage = await _client.PostAsync("https://localhost:7211/api/manuels", stringContent);
 
-            var responseMessage = await _client.PostAsync("https://localhost:7211/api/FAQ", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,9 +52,9 @@ namespace Topic.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteFaq(int id)
+        public async Task<IActionResult> DeleteManuel(int id)
         {
-            var responseMessage = await _client.DeleteAsync("https://localhost:7211/api/FAQ/" + id);
+            var responseMessage = await _client.DeleteAsync("https://localhost:7211/api/manuels/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,25 +64,26 @@ namespace Topic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateFaq(int id)
+        public async Task<IActionResult> UpdateManuel(int id)
         {
-            var responseMessage = await _client.GetAsync("https://localhost:7211/api/FAQ/" + id);
+            var responseMessage = await _client.GetAsync("https://localhost:7211/api/manuels/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateFAQDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateManuelDto>(jsonData);
                 return View(values);
             }
+
             return View("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFaq(UpdateFAQDto updateFaqDto)
+        public async Task<IActionResult> UpdateManuel(UpdateManuelDto updateManuelDto)
         {
-            var faq = JsonConvert.SerializeObject(updateFaqDto);
-            var stringContent = new StringContent(faq, Encoding.UTF8, "application/json");
+            var content = JsonConvert.SerializeObject(updateManuelDto);
+            var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
+            var responseMessage = await _client.PutAsync("https://localhost:7211/api/manuels", stringContent);
 
-            var responseMessage = await _client.PutAsync("https://localhost:7211/api/FAQ", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

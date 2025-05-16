@@ -10,6 +10,8 @@ namespace Topic.API.Mapping
         public SubscriberMapping()
         {
             CreateMap<Subscriber, CreateSubscriberDto>().ReverseMap();
+            CreateMap<Subscriber, UpdateSubscriberDto>().ReverseMap();
+            CreateMap<Subscriber, ResultSubscriberDto>().ReverseMap();
            
 
         }

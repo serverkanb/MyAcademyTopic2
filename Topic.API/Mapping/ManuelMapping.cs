@@ -10,6 +10,7 @@ namespace Topic.API.Mapping
         {
             CreateMap<CreateManuelDto,Manuel>().ReverseMap();
             CreateMap<UpdateManuelDto,Manuel>().ReverseMap();
+            CreateMap<ResultManuelDto,Manuel>().ReverseMap();
         }
     }
 }

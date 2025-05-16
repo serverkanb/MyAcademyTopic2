@@ -16,4 +16,5 @@ namespace Topic.WebUI.Dtos.BlogDtos
        
         public ResultCategoryDto Category { get; set; }
     }
+ 
 }

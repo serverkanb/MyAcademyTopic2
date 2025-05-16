@@ -10,8 +10,20 @@
 <form method="post">
     <input type="hidden" asp-for="CategoryId" />
     <label>Kategori Adı</label>
+    <label>Kategori Adı</label>
     <input type="text" class="form-control" asp-for="CategoryName" />
     <br />
+    <label>Açıklama</label>
+    <input type="text" class="form-control" asp-for="Description" />
+    <br />
+    <label>Resim URL</label>
+    <input type="text" class="form-control" asp-for="ImageUrl" />
+    <br />
+    <label>
+        <input type="checkbox" asp-for="Status" />
+        Aktif mi?
+    </label>
+    <br /><br />
     <button class="btn btn-outline-primary">Güncelle</button>
 
 </form>

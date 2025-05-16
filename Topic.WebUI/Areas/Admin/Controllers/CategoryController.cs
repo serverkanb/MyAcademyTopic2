@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using Topic.WebUI.Dtos.CategoryDtos;
@@ -7,6 +8,7 @@ namespace Topic.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("[area]/[controller]/[action]/{id?}")]
+    [Authorize(Roles = "ADMIN")]
     public class CategoryController : Controller
     {
         private readonly HttpClient _client;

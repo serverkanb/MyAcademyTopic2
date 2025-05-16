@@ -9,6 +9,10 @@
 <h3>Sıkça Sorulan Sorular Sayfası</h3>
 <br />
 <br>
+<div class="table-responsive">
+
+
+
 <table class="table table-hover">
 
     <tr>
@@ -23,7 +27,7 @@
         count ++;
         <tr>
             <th>@count</th>
-            <td>@item.Question<td>
+            <td>@item.Question</td>
             <td>@item.Answer </td>
            
             <td>
@@ -35,14 +39,7 @@
 
     }
 </table>
-
 <a asp-action="CreateFaq" class="btn btn-outline-primary">Yeni Sorulan Soru Ekle</a>
-
-
-    }
-
-
-
-
 </table>
+</div>
 

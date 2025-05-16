@@ -1,0 +1,40 @@
+﻿@using Topic.WebUI.Dtos.SubscriberDtos
+@model List<ResultSubscriberDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h3>Aboneler</h3>
+<br />
+<div class="table-repsonsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Kayıt Tarihi</th>
+            <th>Rol</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Email</td>
+                <td>@item.SubscribedDate?.ToShortDateString()</td>
+                <td>@item.Role</td>
+                <td>
+                    <a asp-action="DeleteSubscriber" asp-route-id="@item.SubscriberId" class="btn btn-outline-danger">Sil</a>
+                    <a asp-action="UpdateSubscriber" asp-route-id="@item.SubscriberId" class="btn btn-outline-info">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a asp-action="CreateSubscriber" class="btn btn-outline-primary">Yeni Abone Ekle</a>
+
+</div>
+
